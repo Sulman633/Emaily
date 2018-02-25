@@ -20,7 +20,11 @@ passport.deserializeUser((id, done) => {
 
 passport.use(new GoogleStrategy(
     {
-        clientID: keys.googleClientID, clientSecret: keys.googleClientSecret, callbackURL: '/auth/google/callback'
+        //google strat causes the http error. First factor. Second factor is heroku's proxy
+        clientID: keys.googleClientID, 
+        clientSecret: keys.googleClientSecret, 
+        callbackURL: '/auth/google/callback',
+        proxy: true // trust the proxy and give the correct url properly.
     }, 
     (accessToken, refreshToken, profile, done) =>{
         User.findOne({ googleId: profile.id }).then((existingUser) => {
