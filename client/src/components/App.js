@@ -11,12 +11,21 @@ const SurveyNew = () => <h2>SurveyNew</h2>
 //App component can call an action creator thanks to connect method at bottom. Also * pulls all action creators.
 class App extends Component {
     componentDidMount() {
-        //this.props.fetchUser();
+        this.props.fetchUser();
     }
     
     render() {
         return(
-            <h1>Hello world</h1>
+            <div>
+                <BrowserRouter>
+                    <div>
+                        <Header />
+                        <Route exact path="/" component={Landing} />
+                        <Route exact path="/surveys" component={Dashboard} />
+                        <Route path="/surveys/new" component={SurveyNew} />
+                    </div>
+                </BrowserRouter>
+            </div>
         )
     }
     

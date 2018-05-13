@@ -32,7 +32,7 @@ require('./routes/billingRoutes')(app);
 
 //production code when on heroku, express will serve production assets
 
-if (process.env.PORT === 'production') {
+if (process.env.NODE_ENV === 'production') {
     //Express will serve up the index.html
     app.use(express.static('client/build'));
 
@@ -42,6 +42,6 @@ if (process.env.PORT === 'production') {
     })
 }
 
-const PORT = process.env.NODE_ENV || 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT);
 
