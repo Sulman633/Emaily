@@ -6,6 +6,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 
@@ -23,19 +24,22 @@ app.use(
         keys: [keys.cookieKey]
     })
 )
+
 // adds data model onto request object as a property for use throughout server side.
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 //production code when on heroku, express will serve production assets
 
 if (process.env.NODE_ENV === 'production') {
-    //Express will serve up the index.html
+    
     app.use(express.static('client/build'));
 
+    //Express will serve up the index.html if it doesnt recognize the route.
     const path = require('path');
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Payments from './Payments';
 
 class Header extends Component {
-    //changes button in header depending on if auth has an key.
+    //changes button in header depending on if auth has a key.
     renderContent() {
         switch (this.props.auth) {
             case null:

@@ -5,8 +5,8 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
+import Dashboard from './Dashboard';
+import SurveyNew from './surveys/surveyNew';
 
 //App component can call an action creator thanks to connect method at bottom. Also * pulls all action creators.
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
     
     render() {
         return(
-            <div>
+            <div className="container">
                 <BrowserRouter>
                     <div>
                         <Header />
